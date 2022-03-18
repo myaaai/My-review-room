@@ -18,6 +18,9 @@
 # ターゲットユーザー
 多趣味な人や好きなものなどを記録しておきたいと考えている人
 
+# チャレンジ要素一覧　
+
+https://docs.google.com/spreadsheets/d/1iEykFufIVIGSOo0BELfIvCTsB9QtK142OpI2z8qnhfg/edit#gid=0
 
 
 
