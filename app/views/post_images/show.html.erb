@@ -1,0 +1,67 @@
+<div class="container px-5 px-sm-0">
+ <div class="row">
+
+<div>
+  <%= image_tag @post_image.get_image %>
+  <p>Title：<%= @post_image.title %></p>
+  <p>Memo：<%= @post_image.memo %></p>
+  <p>Category：<%= @post_image.category.name %></p>
+ <div id="star"></div>
+    <div id="star-rate<%= @post_image.id%>"></div>
+    <script>
+      $('#star-rate<%= @post_image.id%>').raty({
+        size      : 36,
+        starOff   : '<%= asset_path('star-off.png') %>',
+        starOn    : '<%= asset_path('star-on.png') %>',
+        half      : false,
+        readOnly: true,
+        <%# if post_image.review.blank? %>
+        //score: 0
+        <%# else %>
+        //score: <%#= post_image.review %>
+        <%# end %>
+        score: <%= @post_image.review.blank? ? 0 : @post_image.review %>
+      });
+    </script>
+  <p><%#= image_tag @post_image.user.get_profile_image(30,30) %></p>
+  <p>User：<%= @post_image.user.name %></p>
+  <p>Date：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
+  <% if @post_image.user == current_user %>
+    <%= link_to post_image_path(@post_image), method: :delete , "data-confirm" => "本当に消しますか?", class: "btn btn-sm btn-outline-danger" do %>
+        Destroy
+    <% end %>
+    <%= link_to edit_post_image_path(@post_image), class: "btn btn-sm btn-outline-success" do %>
+           Edit
+    <% end %>
+
+  <% end %>
+
+  <% if @post_image.favorited_by?(current_user) %>
+    <p>
+      <%= link_to post_image_favorites_path(@post_image), method: :delete do %>
+        ♥<%= @post_image.favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to post_image_favorites_path(@post_image), method: :post do %>
+        ♡<%= @post_image.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+
+  <p>コメント件数：<%= @post_image.post_comments.count %></p>
+  <% @post_image.post_comments.each do |post_comment| %>
+    <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
+    <%= post_comment.user.name %>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+  <% end %>
+
+  <%= form_with model: [@post_image, @post_comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>
+
+</div>
+</div>

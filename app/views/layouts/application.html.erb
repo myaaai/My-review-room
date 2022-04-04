@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyReviewRoom</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <span><%= link_to root_path, class: 'navbar-brand text-dark' do %>
+      <p class="h2 font-weight-bold">  My review Room</p>
+        <% end %></span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse collapse show" id="navbarNavDropdown">
+    <% if user_signed_in? %>
+     <ul class= "navbar-nav ml-auto">
+
+      <%#= search_form_for @q, url: items_search_path, class:"search-form" do |f| %>
+      <%#= f.search_field :name_cont, placeholder: 'キーワードから探す', class:'input-box' %>
+      <%#= f.button type: "submit", class:"search-button" do%>
+        <%#= image_tag "search.png", class:"search-icon" %>
+      <%# end %>
+      <%# end %>
+
+      <li>
+        <%= link_to user_path(current_user.id), class: "nav-link text-dark" do %>
+        <i class="fas fa-home text-success"></i> My room
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_post_image_path, class: "nav-link text-dark" do %>
+        <i class="fas fa-solid fa-star text-warning"></i>New Review
+        <% end %>
+      </li>
+      <li>
+         <%= link_to users_path, class: "nav-link text-dark" do %>
+           <i class="fas fa-users text-info"></i> Roommate
+          <% end %>
+      </li>
+      <li>
+        <%= link_to post_images_path, class: "nav-link text-dark" do %>
+      <i class="fas fa-solid fa-star text-secondary"></i> Reviews
+        <% end %>
+      </li>
+      <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-dark" do %>
+        <i class="fas fa-sign-out-alt text-danger"></i> Log out
+      <% end %>
+
+    <% else %>
+      <%= link_to new_user_registration_path, class: "nav-link text-dark" do %>
+         <i class="fas fa-user-plus"></i> Sign up
+      <% end %>
+      <%= link_to new_user_session_path, class: "nav-link text-dark" do %>
+         <i class="fas fa-sign-in-alt"></i> Log in
+      <% end %>
+    </ul>
+    <% end %>
+
+    </div>
+  </header>
+  </nav>
+  <%= yield %>
+  </div>
+</body>
+
+</html>

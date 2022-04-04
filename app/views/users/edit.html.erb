@@ -1,0 +1,41 @@
+<div class=“row”>
+	<div class = "body" style>
+		<div class = "container">
+
+　<h3 class="font-weight-bold">Edit my profile</h3>
+
+<%= form_with model: @user, local:true do |f| %>
+<div class= "form-group">
+ <label for="inputName">Name</label><br>
+ <%= f.text_field :name, autofocus: true, id:"inputName" %><br>
+ </div>
+ <div class= "form-group">
+ <label for="inputImage">Image</label><br>
+ <%= f.file_field :profile_image, placeholder: "Image", accept: "image/*" %><br>
+ </div>
+
+  <div class="field">
+  <%#= f.label :birth_date %><br>
+  <%= f.date_select :birth_date, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1) %>
+  </div>
+
+  <div class= "form-group">
+    <%= f.label :gender %><br />
+    <%= f.label :man  %>
+    <%= f.radio_button :gender, :man %>
+    <%= f.label :woman  %>
+    <%= f.radio_button :gender, :woman %>
+  </div>
+  <div class= "form-group">
+   <%= f.submit "Save", class: "btn btn-
+	<%=category.submit 'Save', class: 'btn btn-outline-success mt-3 mr-5" %>
+  </div>
+  <% end %>
+
+
+
+   <%= link_to "退会する", withdraw_path(@user), class: "btn btn-outline-danger mt-3" %>
+
+　  </div>
+　</div>
+</div>

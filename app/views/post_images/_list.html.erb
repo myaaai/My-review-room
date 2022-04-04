@@ -1,0 +1,29 @@
+
+
+<h3 class="font-weight-bold">Profile</h3>
+<div class="profile-container">
+
+ <%= image_tag @user.get_profile_image("70x70") %>
+ <%= link_to "＋category", categories_path, class: "btn btn-outline-info ml-5" %></br>
+
+</div>
+
+ <table class="table table-hover table-inverse">
+ <tbody>
+  <tr>
+  <th>Name</th><th><div class="profile-name"><%= @user.name %></div></th>
+  </tr>
+  <tr>
+  <th>Age</th><th><div class="age"><%= @user.age %></div></th>
+  </tr>
+  <th>Gender</th><th><div class="gender"><%= @user.gender %></div></th>
+  </tr>
+</tbody>
+</table>
+  <div class="row">
+  <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block" do %>
+  <i class="fas fa-user-cog"></i>
+  <% end %>
+  </div>
+
+    </div>

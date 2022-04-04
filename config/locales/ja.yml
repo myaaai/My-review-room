@@ -1,0 +1,11 @@
+ja:
+  enums:
+    user:
+      gender:
+        man: "男性"
+        woman: "女性"
+  date:
+    order:
+      - :year
+      - :month
+      - :day

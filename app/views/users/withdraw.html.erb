@@ -1,0 +1,14 @@
+<div class=“row”>
+	<div class = "body" style>
+		<div class = "container">
+			<h3>本当に退会しますか？</h3>
+
+			<div class = "withdrawal_text">退会すると、<br>
+				これまでの履歴が閲覧できなくなります。<br>
+				退会する場合は、「退会する」をクリックしてください。
+			</div>
+
+			<%= link_to "退会しない", users_path(@user), class: "btn btn-primary"%>&ensp;
+			<%= link_to "退会する", destroy_session_path(@user), method: :patch, data: {confirm: "本当に退会してもよろしいですか？"}, class: "btn btn-danger" %>
+	</div>
+</div>

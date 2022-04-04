@@ -1,0 +1,37 @@
+
+<div class=“row”>
+	<div class = "body" style>
+		<div class = "container">
+  <h3 class="font-weight-bold">New Review</h3>
+   <%= link_to "＋category", categories_path, class: "btn btn-outline-info ml-3 mr-5" %></br>
+
+    <%= form_with model: @post_image do |f| %>
+      <h4>Photo</h4>
+        <%= f.file_field :image, accept: "image/*" %>
+      <h4>Title</h4>
+        <%= f.text_field :title %>
+      <h4>Memo</h4>
+        <%= f.text_area :memo %>
+      <h4>Category</h4>
+      <%= f.collection_select :category_id, @categories, :id, :name, class: 'mb-4' %>
+      <h4>Review</h4>
+        <div class="form-group row" id="star">
+      <%= f.label :review,'', class:'col-md-1 col-form-label' %>
+      <%= f.hidden_field :review, id: :review %>
+      </div>
+    <%= f.submit '投稿' %>
+  <% end %>
+
+   <script>
+    $('#star').raty({
+      size     : 36,
+      starOff: '/assets/star-off.png',
+      starOn : '/assets/star-on.png',
+      scoreName: 'post_image[review]'
+    });
+    </script>
+
+
+    </div>
+  </div>
+</div>

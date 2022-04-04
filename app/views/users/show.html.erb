@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="col-md-4">
+  <%= render 'post_images/list', post_image: @post_image, user: @user %>
+  </div>
+
+<div class="col-md-8">
+        <% @post_images.each do |post_image| %>
+           <%= link_to post_image_path(post_image.id) do %>
+  <div><%= image_tag post_image.image.present? ? post_image.image : "" %></div>
+  <% end %> Title:<%= post_image.title %></br>
+         Memo:<%=post_image.memo %></br>
+         Category：<%= post_image.category.name %></br>
+         <div id="star"></div>
+      <div id="star-rate<%= post_image.id%>"></div>
+      <script>
+      $('#star-rate<%= post_image.id%>').raty({
+        size      : 36,
+        starOff   : '<%= asset_path('star-off.png') %>',
+        starOn    : '<%= asset_path('star-on.png') %>',
+        half      : false,
+        readOnly: true,
+        <%# if post_image.review.blank? %>
+        //score: 0
+        <%# else %>
+        //score: <%#= post_image.review %>
+        <%# end %>
+        score: <%= post_image.review.blank? ? 0 : post_image.review %>
+      });
+    </script>
+
+
+    <% end %>
+
+
+
+</div>
+ </div>
+
+
+
+

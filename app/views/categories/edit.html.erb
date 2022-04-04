@@ -1,0 +1,18 @@
+<div class="container mt-5">
+      <div class="row">
+       <div class="mx-auto">
+<h2>Edit Category</h2>
+<div class="row">
+<p>Category</p>
+
+
+<%= form_with model: @category, url: categories_path do |category| %>
+	<%= category.text_field :name , class: 'ml-5 mt-5 mr-5' %>
+
+	<%=category.submit 'Save', class: 'btn btn-outline-success' %>
+<% end %>
+
+   </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,39 @@
+
+
+<div class="container">
+
+<h2>Category</h2><br>
+
+<%= form_with model: @category,url: categories_path, local: true do |f| %>
+<div class="row">
+ <p>カテゴリー</p>
+ <%= f.text_field :name, class: 'mb-3 ml-3' %>
+<%= f.submit '新規投稿' %>
+
+<% end %>
+
+
+
+<table class="table table-bordere">
+	<thead>
+		<tr>
+			<th>カテゴリー</th>
+
+		</tr>
+	</thead>
+	<tbody>
+		<% @categories.each do |category| %>
+			<tr>
+				<td><%= category.name %></td>
+
+				<td><%= link_to "編集する", edit_category_path(category.id), class: 'btn btn-outline-secondary' %></td>
+				<td><%= link_to "全て表示", category_path(category.id), class: 'btn btn-secondary' %></td>
+			</tr>
+		<% end %>
+	</tbody>
+
+
+ </table>
+ </div>
+ </div>
+</div>
