@@ -1,16 +1,25 @@
-<div class="container">
-  <div class="col-md-4">
+<div class="container px-5 px-sm-0">
+ <div class="row">
+  <div class="col-4">
   <%= render 'post_images/list', post_image: @post_image, user: @user %>
   </div>
 
-<div class="col-md-8">
+
+<div class="col-8">
+    <h3 class="font-weight-bold ml-5">My Post</h3><br>
+    <div class="row">
+        <div class="post_group ml-5">
+
+
+
         <% @post_images.each do |post_image| %>
            <%= link_to post_image_path(post_image.id) do %>
-  <div><%= image_tag post_image.image.present? ? post_image.image : "" %></div>
-  <% end %> Title:<%= post_image.title %></br>
+  <%= image_tag post_image.image.present? ? post_image.image : "" %>
+  <% end %><br>
+         Title:<%= post_image.title %></br>
          Memo:<%=post_image.memo %></br>
          Category：<%= post_image.category.name %></br>
-         <div id="star"></div>
+    <div id="star"></div>
       <div id="star-rate<%= post_image.id%>"></div>
       <script>
       $('#star-rate<%= post_image.id%>').raty({
@@ -27,10 +36,53 @@
         score: <%= post_image.review.blank? ? 0 : post_image.review %>
       });
     </script>
-
-
     <% end %>
+    </div>
+    <% if @user.follow_request?(current_user, @user) %>
+    <div class="form-group">
+      <div class="schedule-item">
+        <div class="schedule-item-header text-left">
+          <p class="bold"><i class="fas fa-star"></i>You have follow request<i class="fas fa-star"></i></p>
+        </div>
+        <div class="schedule-item-body text-left">
+          <p><%= @user.name %> requests you to be mate</p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <% if current_user.matchers?(@user) %>
+    <div class="form-group">
+      <div class="schedule-item">
+        <div class="schedule-item-header text-left">
+          <p class="bold"><%= @user.name %> is your mate</p>
+        </div>
+      </div>
+    </div>
+  <% end %>
 
+  <% if current_user.id == @user.id %>
+
+  <% else %>
+    <% unless current_user.following?(@user) %>
+      <div class="actions">
+        <%= link_to 'Request to be mate', user_relationships_path(@user.id), method: :post, class:"sign-up-btn" %>
+      </div>
+    <% else %>
+      <div class="actions">
+        <%= link_to 'Cancel to your request', user_relationship_path(@user.id), method: :delete, class:"sign-up-btn" %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% if current_user.id == @user.id %>
+    <div class="actions">
+      <%= link_to 'Edit profile', edit_user_path, class:"sign-up-btn" %>
+    </div>
+  <% end %>
+</div>
+
+</div>
+</div>
 
 
 </div>

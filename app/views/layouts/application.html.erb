@@ -12,11 +12,10 @@
 
   <body>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-white bg-white">
     <div class="container">
-      <span><%= link_to root_path, class: 'navbar-brand text-dark' do %>
-      <p class="h2 font-weight-bold">  My review Room</p>
-        <% end %></span>
+      <a class="navbar-brand p-3" href= root_path ><%= image_tag('logo.png') %></a>
+
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -24,12 +23,12 @@
     <% if user_signed_in? %>
      <ul class= "navbar-nav ml-auto">
 
-      <%#= search_form_for @q, url: items_search_path, class:"search-form" do |f| %>
-      <%#= f.search_field :name_cont, placeholder: 'キーワードから探す', class:'input-box' %>
-      <%#= f.button type: "submit", class:"search-button" do%>
+      <%= search_form_for @q, url: items_search_path, class:"search-form" do |f| %>
+      <%= f.search_field :name_cont, placeholder: 'キーワードから探す', class:'input-box' %>
+      <%= f.button type: "submit", class:"search-button" do%>
         <%#= image_tag "search.png", class:"search-icon" %>
-      <%# end %>
-      <%# end %>
+      <% end %>
+      <% end %>
 
       <li>
         <%= link_to user_path(current_user.id), class: "nav-link text-dark" do %>
@@ -57,10 +56,10 @@
 
     <% else %>
       <%= link_to new_user_registration_path, class: "nav-link text-dark" do %>
-         <i class="fas fa-user-plus"></i> Sign up
+         <i class="fas fa-user-plus text-primary"></i> Sign up
       <% end %>
       <%= link_to new_user_session_path, class: "nav-link text-dark" do %>
-         <i class="fas fa-sign-in-alt"></i> Log in
+         <i class="fas fa-sign-in-alt text-success"></i> Log in
       <% end %>
     </ul>
     <% end %>
@@ -69,7 +68,19 @@
   </header>
   </nav>
   <%= yield %>
+
+
   </div>
+  <footer>
+     <div class="center-block">
+      <div class="row">
+       <div class="mx-auto">
+         <p>CopyRight Infratop.inc</p>
+       </div>
+      </div>
+     </div>
+    </footer>
+ </body>
 </body>
 
 </html>

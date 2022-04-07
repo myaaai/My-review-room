@@ -2,6 +2,7 @@ class CategoriesController < ApplicationController
 def index
     @categories = Category.all
     @category = Category.new
+    @user = current_user
 
 end
 
@@ -9,6 +10,12 @@ def create
     category = Category.new(category_params)
     category.save
     redirect_to categories_path
+end
+
+def show
+  @category = Category.find(params[:id])
+  @post_images = @category.post_images
+
 end
 
 def edit
@@ -31,7 +38,7 @@ end
 private
 
  def category_params
-    params.require(:category).permit(:name, :is_enabled)
+    params.require(:category).permit(:name, :profile_image, :is_enabled)
  end
 
 

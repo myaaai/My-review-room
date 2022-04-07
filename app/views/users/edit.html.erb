@@ -2,7 +2,8 @@
 	<div class = "body" style>
 		<div class = "container">
 
-　<h3 class="font-weight-bold">Edit my profile</h3>
+　<h3 class="font-weight-bold">
+　 Edit my profile</h3>
 
 <%= form_with model: @user, local:true do |f| %>
 <div class= "form-group">
@@ -27,8 +28,8 @@
     <%= f.radio_button :gender, :woman %>
   </div>
   <div class= "form-group">
-   <%= f.submit "Save", class: "btn btn-
-	<%=category.submit 'Save', class: 'btn btn-outline-success mt-3 mr-5" %>
+   <%= f.submit "Save", class: "btn btn-outline-success mt-3 mr-5" %>
+
   </div>
   <% end %>
 

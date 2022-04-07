@@ -5,7 +5,7 @@
 
 
 <div class="col-md-12">
-<h3 class="font-weight-bold">Review</h3>
+<h3 class="font-weight-bold">Reviews</h3>
 <div class="row">
 <% @post_images.each do |post_image| %>
   <% if post_image.user.blank? %>
@@ -40,7 +40,9 @@
         score: <%= post_image.review.blank? ? 0 : post_image.review %>
       });
     </script>
-  <p>Name：<%= post_image.user.name %></p>
+
+
+  <p>Name：<%= link_to post_image.user.name, user_path(@user.id) %></p>
   <p>Date: <%= post_image.created_at.strftime('%Y/%m/%d') %></p>
 
 </div>

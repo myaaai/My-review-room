@@ -1,8 +1,49 @@
 <div class="container">
-   <div class="row">
-  
 
-<h3 class="font-weight-bold">Show</h3>
+
+<h3 class="font-weight-bold mr-5 mb-5 ml-5 mt-5">Category:  <%= @category.name %></h3>
+<div class="col-8">
+   <div class="row">
+
+
+    <div class="post_group">
+
+
+        <% @post_images.each do |post_image| %>
+           <%= link_to post_image_path(post_image.id) do %>
+  <%= image_tag post_image.image.present? ? post_image.image : "" %>
+  <% end %><br>
+         Title:<%= post_image.title %></br>
+         Memo:<%=post_image.memo %></br>
+         Category：<%= post_image.category.name %></br>
+    <div id="star"></div>
+      <div id="star-rate<%= post_image.id%>"></div>
+      <script>
+      $('#star-rate<%= post_image.id%>').raty({
+        size      : 36,
+        starOff   : '<%= asset_path('star-off.png') %>',
+        starOn    : '<%= asset_path('star-on.png') %>',
+        half      : false,
+        readOnly: true,
+        <%# if post_image.review.blank? %>
+        //score: 0
+        <%# else %>
+        //score: <%#= post_image.review %>
+        <%# end %>
+        score: <%= post_image.review.blank? ? 0 : post_image.review %>
+      });
+    </script>
+    <% end %>
+    </div>
+     
+</div>
+<div class="back">
+<%= link_to "Back", categories_path(@category), class: 'btn btn-warning mt-5 mb-5' %>
+</div>
+</div>
+
+
+
 
 
 

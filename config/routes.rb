@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy]
     resources :post_comments, only: [:create, :destroy]
   end
-  resources :users, only: [:show, :edit, :index, :update]
+  resources :users, only: [:show, :edit, :index, :update] do
+    resources :relationships, only: [:create, :destroy]
+  end
   get "/users/:id/index" => "users#withdraw", as: "withdraw"
   resources :categories, only: [:index, :show, :create, :edit, :update]
   get 'items/search'

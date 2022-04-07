@@ -1,27 +1,37 @@
-<div class=“row”>
-	<div class = "body" style>
-		<div class = "container">
+<div class="container mt-5">
+      <div class="row">
+       <div class="mx-auto">
 		  <h3 class="font-weight-bold">Edit Review</h3>
-		  <%= form_with model: @post_image, url: post_images_path(@post_image), method: :patch, local: true do |f| %>
+		  <%= form_with model: @post_image, url: post_image_path(@post_image), method: :patch, local: true do |f| %>
 		  <div>
- 
- 	  		<h4>Photo</h4>
-       		 	<%= f.file_field :image, accept: "image/*" %>
-      		<h4>Title</h4>
-        		<%= f.text_field :title %>
-      		<h4>Memo</h4>
-        		<%= f.text_area :memo %>
-      		<h4>Category</h4>
-      			<%= f.collection_select :category_id, @categories, :id, :name, class: 'mb-4' %>
-      		<h4>Review</h4>
-        		<div class="form-group row" id="star">
-      			<%= f.label :review,'', class:'col-md-1 col-form-label' %>
-      			<%= f.hidden_field :review, id: :review %>
-      			</div>
-    			<%= f.submit '投稿' %>
-  	  			<% end %>
 
-   			</div>
+ 	  	  <div class="row">
+      <h4 class="font-weight-bold ml-5 mr-3 mt-3">Photo:</h4>
+        <div class="image mt-3"><%= f.file_field :image, accept: "image/*" %>
+        </div></div>
+    <div class="row">
+      <h4 class="font-weight-bold ml-5 mr-3 mt-3">Title:</h4>
+        <div class="title mt-3"><%= f.text_field :title %>
+        </div></div>
+    <div class="row">
+      <h4 class="font-weight-bold ml-5 mr-3 mt-3">Memo:</h4>
+        <div class="memo mt-3"><%= f.text_area :memo %>
+        </div></div>
+    <div class="row">
+      <h4 class="font-weight-bold ml-5 mr-3 mt-3">Category:</h4>
+      <div class="image mt-3"><%= f.collection_select :category_id, @categories, :id, :name, class: 'mb-4' %>
+      </div></div>
+    <div class="row">
+      <h4 class="font-weight-bold ml-5 mr-3 mt-3 mb-3">Review</h4>
+        <div class="form-group row" id="star">
+      <%= f.label :review,'', class:'col-md-1 col-form-label' %>
+      <%= f.hidden_field :review, id: :review %>
+      </div>
+      </div>
+
+    <%= f.submit '投稿', class: 'btn btn-outline-success ml-5 mt-3 mb-5' %>
+
+  <% end %>
    			 <script>
    				 $('#star').raty({
       			 size     : 36,
@@ -30,6 +40,6 @@
       			 scoreName: 'post_image[review]'
     			});
     		</script>
-    
+
   	</div>
 </div>
