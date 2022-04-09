@@ -15,6 +15,7 @@ end
 def show
   @category = Category.find(params[:id])
   @post_images = @category.post_images
+  @user = current_user
 
 end
 

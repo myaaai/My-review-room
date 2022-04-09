@@ -1,13 +1,15 @@
-<div class="container mt-5">
-      <div class="row">
-       <div class="mx-auto">
+<div class="container px-5 px-sm-0">
+ <div class="row">
+   <div class="col-4">
+    <%= render 'post_images/list', post_image: @post_image, user: @user %>
+   </div>
 
-   <div>
-  <%= image_tag @post_image.get_image %>
-  <p>Title：<%= @post_image.title %></p>
-  <p>Memo：<%= @post_image.memo %></p>
-  <p>Category：<%= @post_image.category.name %></p>
- <div id="star"></div>
+  <div class="col-8">
+    <%= image_tag @post_image.get_image, class: "main_image" %>
+    <p>Title：<%= @post_image.title %></p>
+    <p>Memo：<%= @post_image.memo %></p>
+    <p>Category：<%= @post_image.category.name %></p>
+     <div id="star"></div>
     <div id="star-rate<%= @post_image.id%>"></div>
     <script>
       $('#star-rate<%= @post_image.id%>').raty({
@@ -25,7 +27,9 @@
       });
     </script>
   <p><%#= image_tag @post_image.user.get_profile_image(30,30) %></p>
-  <p>User：<%= @post_image.user.name %></p>
+  <p><%= image_tag @post_image.user.get_profile_image("60x60") %>
+           <%= @post_image.user.name %></p>
+
   <p>Date：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
   <% if @post_image.user == current_user %>
     <%= link_to post_image_path(@post_image), method: :delete , "data-confirm" => "本当に消しますか?", class: "btn btn-sm btn-outline-danger" do %>
@@ -53,15 +57,19 @@
 
   <p>コメント件数：<%= @post_image.post_comments.count %></p>
   <% @post_image.post_comments.each do |post_comment| %>
-    <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
-    <%= post_comment.user.name %>
-    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+  <div class="comment">
+    <%= post_comment.comment %></div>
+    <p><%= image_tag post_comment.user.get_profile_image("50x50") %>
+    <%= post_comment.user.name %></p>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %>
   <% end %>
+
 
   <%= form_with model: [@post_image, @post_comment] do |f| %>
     <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
     <%= f.submit "送信する" %>
   <% end %>
+
 </div>
 
 </div>

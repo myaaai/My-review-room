@@ -21,10 +21,14 @@
         <% @mates.each do |user| %>
 
         <tr>
+          <td><%= link_to user_path(user.id) do%>
+           <%= image_tag user.get_profile_image("50x50") %>
+           <% end %>
+                <% if user.id == current_user.id %>
+                <% end %></td>
           <td>
            <%= link_to user.name, user_path(user.id) %></td>
-          <td>
-           <%= user.identity %></td>
+
         </tr>
             <% end %>
       </tbody>

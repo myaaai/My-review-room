@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
   def index
     @mates = current_user.matchers
-    @users = User.all
+    users_id = current_user.followings.pluck(:id)
+    pp users_id
+    users_id.push(current_user.id)
+    pp users_id
+    @users = User.where.not(id: users_id)
     @user = current_user
   end
 
@@ -16,7 +20,7 @@ class UsersController < ApplicationController
     @user.update(user_params)
     if @user.save
       flash[:notice] = "You have updated user successfully."
-        redirect_to user_path(@user.id)
+      redirect_to user_path(@user.id)
     else
     render :edit
     end
@@ -25,7 +29,7 @@ class UsersController < ApplicationController
   def edit
     @user = current_user
     if current_user.id != @user.id
-    redirect_to user_path(current_user)
+    redirect_to users_path
     end
 
   end
