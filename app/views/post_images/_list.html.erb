@@ -1,11 +1,14 @@
 <div class = "container">
 
 
-<h3 class="font-weight-bold">Profile</h3>
+<h3 class="font-weight-bold"><i class="fas fa-solid fa-house-user text-primary mt-3"></i>  Profile</h3>
 <div class="profile-container">
 
  <%= image_tag @user.get_profile_image("70x70") %>
- <%= link_to "＋category", categories_path, class: "btn btn-outline-info ml-5" %></br>
+ <%= link_to "＋Category", categories_path, class: "btn btn-outline-primary ml-5" %>
+  <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary ml-3" do %>
+  <i class="fas fa-user-cog"></i> Edit
+  <% end %>
 
 
 
@@ -21,11 +24,7 @@
   </tr>
 </tbody>
 </table>
-  <div class="row">
-  <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block" do %>
-  <i class="fas fa-user-cog"></i>
-  <% end %>
-  </div>
+
 </div>
 
     </div>

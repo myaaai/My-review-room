@@ -19,7 +19,7 @@ class PostImagesController < ApplicationController
   def index
     @post_images = PostImage.all
     @user = current_user
-
+    
   end
 
 

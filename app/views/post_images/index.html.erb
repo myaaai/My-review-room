@@ -1,11 +1,12 @@
-<div class="container px-5 px-sm-0">
- <div class="row">
-   <div class="col-4">
+ <div class="row" id="main_background">
+<div class="container">
+  <div class="row">
+   <div class="col-4 border rounded border-info h-50 mt-5" id="color">
     <%= render 'post_images/list', post_image: @post_image, user: @user %>
    </div>
 
    <div class="col-8">
-<h3 class="font-weight-bold">Reviews</h3>
+<h3 class="font-weight-bold"><i class="fas fa-solid fa-star text-secondary ml-4 mt-5"></i> Reviews</h3>
 <div class="row">
 <% @post_images.each do |post_image| %>
   <% if post_image.user.blank? %>
@@ -16,9 +17,15 @@
 <%#= post_image.inspect %>
 
   <%# if post_image.image.present? %>
-   <%= link_to post_image_path(post_image.id) do %>
-  <div><%= image_tag post_image.image.present? ? post_image.image : "", class: "list_image" %></div>
-  <% end %>
+
+     <p><%= link_to user_path(post_image.user) do %>
+          <%= image_tag post_image.user.get_profile_image("40x40") %>
+        <% end %>
+           <%= link_to post_image.user.name, user_path(post_image.user.id) %></p>
+
+     <%= link_to post_image_path(post_image.id) do %>
+    <div><%= image_tag post_image.image.present? ? post_image.image : "", class: "list_image mb-1" %></div>
+    　<% end %>
 
   <p>Title：<%= post_image.title %></p>
   <p>Memo：<%= post_image.memo %></p>
@@ -42,12 +49,11 @@
     </script>
 
 
-  <p>Name：<%= link_to post_image.user.name, user_path(@user.id) %></p>
-  <p>Date: <%= post_image.created_at.strftime('%Y/%m/%d') %></p>
+   <p><%= post_image.created_at.strftime('%Y/%m/%d') %></p>
 
 </div>
 <% end %>
-
+</div>
 
   </div>
   </div>

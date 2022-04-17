@@ -14,7 +14,7 @@ class User < ApplicationRecord
   # フォローされている側のユーザー(passive relationship)
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
-
+  has_many :categories
   enum gender: { man: 0, woman: 1}
 
   def get_profile_image(size)

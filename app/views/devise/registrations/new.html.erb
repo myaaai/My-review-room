@@ -1,53 +1,59 @@
+<div class="row" id="main_background">
 <div class="container">
- <div class="row">
+  <div class="row">
   <div class="mx-auto col-12 col-sm-10 col-lg-9 col-xl-6">
 
-<h2>Sign up</h2>
+<h3 class="font-weight-bold mb-5">Sign up</h3>
 
 <%= form_with model: @user, url: user_registration_path do |f| %>
 <%= render "devise/shared/error_messages", resource: resource %>
 
+  <div class="field mb-3">
+  <%= f.label :photo, class: "font-weight-bold mr-3" %>
+   <%= f.file_field :image, accept: "image/*" %>
+    </div>
 
-  <div class="field">
-  <%= f.label :name %><br>
+  <div class="field mb-3">
+  <%= f.label :name, class: "font-weight-bold mr-3" %>
   <%= f.text_field :name %>
   </div>
 
-  <div class="field">
-  <%= f.label :birth_date %><br>
+  <div class="field mb-3">
+  <%= f.label :birthday, class: "font-weight-bold mr-3" %>
   <%= f.date_select :birth_date, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1), date_separator: '/' %>
   </div>
 
-  <div class="field">
-    <%= f.label :gender %><br />
-    <%= f.label :man  %>
+  <div class="field mb-3">
+    <%= f.label :gender , class: "font-weight-bold mr-3" %>
     <%= f.radio_button :gender, :man %>
-    <%= f.label :woman  %>
+    <%= f.label :man  %>
     <%= f.radio_button :gender, :woman %>
+    <%= f.label :woman  %>
+
   </div>
 
 
-  <div class="field">
-    <%= f.label :email %><br />
+  <div class="field mb-3">
+    <%= f.label :email, class: "font-weight-bold mr-3" %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
+  <div class="field mb-1">
+    <%= f.label :password, class: "font-weight-bold mr-3" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
+  <div class="field mb-3">
+    <%= f.label :password_confirmation, class: "font-weight-bold mr-3" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up",class: 'btn btn-outline-success mt-3 mb-5' %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%#= render "devise/shared/links" %>

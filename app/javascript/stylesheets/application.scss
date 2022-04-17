@@ -7,11 +7,35 @@ body {
 }
 
 .list_image {
-    width: 128px;
+    width: 148px;
     height: 128px;
 }
 
 .main_image {
-  width: 150px;
-  height: 150px;
+  width: 300px;
+  height: 250px;
+
 }
+
+.search-icon {
+  width: 25px;
+  height: 25px;
+}
+
+#background {
+  background-image: url("../images/background.jpg");
+  background-repeat:  no-repeat;
+  background-color: #F7F7F3;
+}
+
+#main_background {
+  background-color: #F7F7F3;
+}
+
+#color {
+   background-color: white;
+}
+
+// #background {
+//   background-image: image-url("/images/background.jpg");
+// }

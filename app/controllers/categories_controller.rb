@@ -8,6 +8,7 @@ end
 
 def create
     category = Category.new(category_params)
+    category.user = current_user
     category.save
     redirect_to categories_path
 end

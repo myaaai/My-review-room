@@ -2,6 +2,7 @@ class Category < ApplicationRecord
 
   has_many :post_images, dependent: :destroy
   validates :name, presence: true
+  belongs_to :user
 
   def get_image
     unless image.attached?
