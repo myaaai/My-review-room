@@ -1,12 +1,13 @@
-<div class="container px-5 px-sm-0">
- <div class="row">
+ <div class="row" id="main_background">
+<div class="container">
+  <div class="row">
    <div class="col-4 border rounded border-info h-50 mt-5" id="color">
     <%= render 'post_images/list', post_image: @post_image, user: @user %>
    </div>
 
-  <div class="col-3 text-aline ml-5 mr-5 mt-1 mt-5">
+  <div class="col-3 text-aline ml-5 mr-5 mt-1 mt-5" >
      <p><%= image_tag @post_image.user.get_profile_image("40x40") %>
-           <%= @post_image.user.name %></p>
+           <%= link_to @post_image.user.name, user_path(@post_image.user.id) %></p>
     <%= image_tag @post_image.get_image, class: "main_image" %>
       <% if @post_image.user == current_user %>
   <div class="text-center">
@@ -21,7 +22,7 @@
     </div>
  <div class="col-3 ml-3 mt-5">
     <h5>Title：<%= @post_image.title %></h5>
-    <p>Memo：<%= @post_image.memo %></p>
+    <p>Memo：<%= simple_format(@post_image.memo) %></p>
     <p>Category：<%= @post_image.category.name %></p>
      <div id="star"></div>
     <div id="star-rate<%= @post_image.id%>"></div>

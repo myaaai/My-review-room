@@ -13,7 +13,7 @@
     <% next %>
   <% end %>
 
-<div class= "form-group mb-5 mr-5 ml-5">
+<div class= "form-group mb-5 mr-3 ml-5 review-group">
 <%#= post_image.inspect %>
 
   <%# if post_image.image.present? %>
@@ -28,7 +28,7 @@
     　<% end %>
 
   <p>Title：<%= post_image.title %></p>
-  <p>Memo：<%= post_image.memo %></p>
+  <p>Memo：<%= simple_format(post_image.memo) %></p>
   <p>Category：<%= post_image.category.name %></p>
  <div id="star"></div>
     <div id="star-rate<%= post_image.id%>"></div>
