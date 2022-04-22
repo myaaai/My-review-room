@@ -5,9 +5,11 @@
 <div class="profile-container">
 
  <%= image_tag @user.get_profile_image("70x70") %>
+ <% if @user == current_user %>
  <%= link_to "＋Category", categories_path, class: "btn btn-outline-primary ml-5" %>
   <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary ml-3" do %>
   <i class="fas fa-user-cog"></i> Edit
+  <% end %>
   <% end %>
 
 

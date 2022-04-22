@@ -13,12 +13,12 @@
  <%= f.text_field :name, autofocus: true, id:"inputName" %><br>
  </div>
  <div class= "form-group">
- <label for="inputImage">Image</label><br>
+ <label for="inputImage">Profile image</label><br>
  <%= f.file_field :profile_image, placeholder: "Image", accept: "image/*" %><br>
  </div>
 
   <div class="field">
-  <%#= f.label :birth_date %><br>
+  <%= f.label :birthday %><br>
   <%= f.date_select :birth_date, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1) %>
   </div>
 
