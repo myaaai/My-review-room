@@ -8,17 +8,17 @@
 <div class="col-7 ml-3">
     <div class="row">
 
-<h3 class="font-weight-bold mr-3 mb-3 mt-5">Category</h3><br>
+<h3 class="font-weight-bold mr-3 mb-1 mt-5">Category</h3><br>
 <%= form_with model: @category,url: categories_path, local: true do |f| %>
 <div class="row">
- <%= f.text_field :name, class: 'mt-5 mb-2 mr-5 ml-3' %>
-<%= f.submit 'Add', class: 'ml-3 mt-5 mb-3 btn btn-outline-success' %>
+ <%= f.text_field :name, class: 'mt-1 mb-3 mr-5 ml-3' %>
+<%= f.submit 'Add', class: 'ml-3 mt-1 mb-3 btn btn-outline-success' %>
 
 <% end %>
 
 
 
-<table class="table table-border mt-3">
+<table class="table table-border mt-1">
 	<thead>
 		<tr>
 			<th>ALL</th>
