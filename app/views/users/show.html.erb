@@ -1,82 +1,82 @@
 <div class="row" id="main_background">
-<div class="container">
-  <div class="row">
-  <div class="col-4 border rounded border-info mb-5 h-50 mt-5" id="color">
-  <%= render 'post_images/list', post_image: @post_image, user: @user %>
+  <div class="container">
+    <div class="row">
+      <div class="col-4 border rounded border-info mb-5 h-50 mt-5" id="color">
+        <%= render 'post_images/list', post_image: @post_image, user: @user %>
 
-  <% if @user.follow_request?(current_user, @user) %>
-        <div class="form-group">
-          <div class="schedule-item">
-            <div class="schedule-item-header text-left">
-              <p class="bold"><i class="fas fa-star"></i>You have follow request<i class="fas fa-star"></i></p>
-            </div>
-          <div class="schedule-item-body text-left">
-            <p><%= @user.name %> requests you to be mate</p>
-          </div>
-        </div>
-      </div>
-      <% end %>
-      <% if current_user.matchers?(@user) %>
-        <div class="form-group">
-          <div class="schedule-item">
-            <div class="schedule-item-header text-left">
-              <p class="bold font-weight-bold ml-5"><%= @user.name %> is your mate</p>
+        <% if @user.follow_request?(current_user, @user) %>
+          <div class="form-group">
+            <div class="schedule-item">
+              <div class="schedule-item-header text-left">
+                <p class="bold"><i class="fas fa-star"></i>You have follow request<i class="fas fa-star"></i></p>
+              </div>
+              <div class="schedule-item-body text-left">
+                <p><%= @user.name %> requests you to be mate</p>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
+        <% if current_user.matchers?(@user) %>
+          <div class="form-group">
+            <div class="schedule-item">
+              <div class="schedule-item-header text-left">
+                <p class="bold font-weight-bold ml-5"><%= @user.name %> is your mate</p>
+              </div>
+            </div>
+          </div>
+          <% end %>
+
+        <% if current_user.id == @user.id %>
+
+        <% else %>
+          <% unless current_user.following?(@user) %>
+            <div class="actions">
+              <%= link_to 'Request to be mate', user_relationships_path(@user.id), method: :post, class:"btn btn-outline-success mt-3 mr-5 ml-5 mb-3" %>
+            </div>
+          <% else %>
+            <div class="actions">
+              <%= link_to 'Cancel to your request', user_relationship_path(@user.id), method: :delete, class:"btn btn-outline-danger mt-3 mr-5 mb-3 ml-5" %>
+            </div>
+          <% end %>
         <% end %>
 
-      <% if current_user.id == @user.id %>
-
-  <% else %>
-    <% unless current_user.following?(@user) %>
-      <div class="actions">
-        <%= link_to 'Request to be mate', user_relationships_path(@user.id), method: :post, class:"btn btn-outline-success mt-3 mr-5 ml-5 mb-3" %>
       </div>
-    <% else %>
-      <div class="actions">
-        <%= link_to 'Cancel to your request', user_relationship_path(@user.id), method: :delete, class:"btn btn-outline-danger mt-3 mr-5 mb-3 ml-5" %>
-      </div>
-    <% end %>
-  <% end %>
 
-</div>
-
-
-<div class="col-8">
-    <h3 class="font-weight-bold ml-5 mt-5"><i class="fas fa-solid fa-star text-success"></i> Posts</h3><br>
-      <div class="row">
-        <% @post_images.each do |post_image| %>
-        <div class= "form-group mb-5 mr-5 ml-5 review-group">
-        <%= link_to post_image_path(post_image.id) do %>
-        <%= image_tag post_image.image.present? ? post_image.image : "", class: "list_image" %>
-        <% end %>
-         <p>Title:  <%= post_image.title %></p>
-         <p>Memo: <%= post_image.memo %></p>
-         <p>Category：<%= post_image.category.name %></p>
-         <div id="star"></div>
-         <div id="star-rate<%= post_image.id%>"></div>
-          <script>
-          $('#star-rate<%= post_image.id%>').raty({
-          size      : 36,
-          starOff   : '<%= asset_path('star-off.png') %>',
-          starOn    : '<%= asset_path('star-on.png') %>',
-          half      : false,
-          readOnly: true,
-          <%# if post_image.review.blank? %>
-          //score: 0
-          <%# else %>
-          //score: <%#= post_image.review %>
-          <%# end %>
-          score: <%= post_image.review.blank? ? 0 : post_image.review %>
-          });
-          </script>
-          <p>Date: <%= post_image.created_at.strftime('%Y/%m/%d') %></p>
-        </div>
-        <% end %>
+      <div class="col-8">
+        <h3 class="font-weight-bold ml-5 mt-5"><i class="fas fa-solid fa-star text-success"></i> Posts</h3><br>
+        <div class="row">
+          <% @post_images.each do |post_image| %>
+            <div class= "form-group mb-5 mr-5 ml-5 review-group">
+              <%= link_to post_image_path(post_image.id) do %>
+                <%= image_tag post_image.image.present? ? post_image.image : "", class: "list_image" %>
+              <% end %>
+              <p>Title:  <%= post_image.title %></p>
+              <p>Memo: <%= simple_format(post_image.memo) %></p>
+              <p>Category：<%= post_image.category.name %></p>
+              <div id="star"></div>
+              <div id="star-rate<%= post_image.id%>"></div>
+              <script>
+                $('#star-rate<%= post_image.id%>').raty({
+                  size      : 36,
+                  starOff   : '<%= asset_path('star-off.png') %>',
+                  starOn    : '<%= asset_path('star-on.png') %>',
+                  half      : false,
+                  readOnly: true,
+                  <%# if post_image.review.blank? %>
+                  //score: 0
+                  <%# else %>
+                  //score: <%#= post_image.review %>
+                  <%# end %>
+                  score: <%= post_image.review.blank? ? 0 : post_image.review %>
+                });
+              </script>
+              <p>Date: <%= post_image.created_at.strftime('%Y/%m/%d') %></p>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
+  </div>
 
 
 

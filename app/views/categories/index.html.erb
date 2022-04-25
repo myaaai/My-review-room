@@ -1,20 +1,19 @@
 <div class="row" id="main_background">
-<div class="container">
-  <div class="row">
-  <div class="col-4 mr-5 border rounded border-info h-50 mb-5 mt-5" id="color">
-  <%= render 'post_images/list', post_image: @post_image, user: @user %>
-  </div>
-
-<div class="col-7 ml-3">
+  <div class="container">
     <div class="row">
+      <div class="col-4 mr-5 border rounded border-info h-50 mb-5 mt-5" id="color">
+        <%= render 'post_images/list', post_image: @post_image, user: @user %>
+      </div>
 
-<h3 class="font-weight-bold mr-3 mb-1 mt-5">Category</h3><br>
-<%= form_with model: @category,url: categories_path, local: true do |f| %>
-<div class="row">
- <%= f.text_field :name, class: 'mt-1 mb-3 mr-5 ml-3' %>
-<%= f.submit 'Add', class: 'ml-3 mt-1 mb-3 btn btn-outline-success' %>
+    <div class="col-7 mt-5">
 
-<% end %>
+					<h3 class="font-weight-bold mr-3 mb-1">Category</h3>
+							<%= form_with model: @category,url: categories_path, local: true do |f| %>
+
+ 						<%= f.text_field :name, class: 'mb-3 mr-5 ml-3' %>
+						<%= f.submit 'Add', class: 'ml-3 mb-3 btn btn-outline-success' %>
+
+						<% end %>
 
 
 
@@ -30,10 +29,15 @@
 			<tr>
 				<td><%= category.name %></td>
 
-				<td><%= link_to edit_category_path(category.id), class: 'btn btn-outline-secondary' do %>
-			Edit</td>
-				<% end %>
-				<td><%= link_to "Show all", category_path(category.id), class: 'btn btn-secondary' %></td>
+				<td>
+					<%= link_to edit_category_path(category.id), class: 'btn btn-outline-secondary' do %>
+						Edit
+				</td>
+					<% end %>
+
+				<td>
+					<%= link_to "Show all", category_path(category.id), class: 'btn btn-secondary' %>
+				</td>
 			</tr>
 		<% end %>
 	</tbody>
@@ -45,4 +49,3 @@
 </div>
 </div>
  </div>
-</div>

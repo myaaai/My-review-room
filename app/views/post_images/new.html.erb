@@ -1,53 +1,52 @@
 <div class="row" id="main_background">
-<div class="container">
-  <div class="row">
-  <div class="col-4 border rounded border-info h-50 mt-5" id="color">
-  <%= render 'post_images/list', post_image: @post_image, user: @user %>
-  </div>
-
-<div class="col-8 mx-auto new-group">
-  <h3 class="font-weight-bold ml-4 mt-5"><i class="fas fa-solid fa-star text-warning"></i> New Post</h3>
-
-    <%= form_with model: @post_image do |f| %>
-     <div class="row">
-      <h4 class="font-weight-bold text-center ml-5 mr-3 mt-3">Photo:</h4>
-        <div class="image mt-3"><%= f.file_field :image, accept: "image/*" %>
-        </div></div>
+  <div class="container">
     <div class="row">
-      <h4 class="font-weight-bold ml-5 mr-3 mt-3">Title:</h4>
-        <div class="title mt-3 ml-3"><%= f.text_field :title %>
-        </div></div>
-    <div class="row">
-      <h4 class="font-weight-bold ml-5 mr-3 mt-3">Memo:</h4>
-        <div class="memo mt-3"><%= f.text_area :memo %>
-        </div></div>
-    <div class="row">
-      <h4 class="font-weight-bold ml-5 mr-3 mt-3">Category:</h4>
-      <div class="image mt-3"><%= f.collection_select :category_id, @categories, :id, :name, class: 'mb-4' %>
-      </div></div>
-    <div class="row">
-      <h4 class="font-weight-bold ml-5 mr-3 mt-3 mb-3">Review: </h4>
-        <div class="form-group mt-3" id="star">
-      <%#= f.label :review,'', class:'col-md-1 col-form-label' %>
-      <%= f.hidden_field :review, id: :review %>
+      <div class="col-4 border rounded border-info h-50 mt-5" id="color">
+        <%= render 'post_images/list', post_image: @post_image, user: @user %>
       </div>
+
+      <div class="col-8 mx-auto new-group">
+        <h3 class="font-weight-bold ml-4 mt-5"><i class="fas fa-solid fa-star text-warning"></i> New Post</h3>
+
+        <%= form_with model: @post_image do |f| %>
+          <div class="row">
+            <h4 class="font-weight-bold text-center ml-5 mr-3 mt-3">Photo:</h4>
+              <div class="image mt-3"><%= f.file_field :image, accept: "image/*" %></div>
+          </div>
+          <div class="row">
+            <h4 class="font-weight-bold ml-5 mr-3 mt-3">Title:</h4>
+              <div class="title mt-3 ml-3"><%= f.text_field :title %></div>
+          </div>
+          <div class="row">
+            <h4 class="font-weight-bold ml-5 mr-3 mt-3">Memo:</h4>
+              <div class="memo mt-3"><%= f.text_area :memo %></div>
+          </div>
+          <div class="row">
+            <h4 class="font-weight-bold ml-5 mr-3 mt-3">Category:</h4>
+            <div class="image mt-3"><%= f.collection_select :category_id, @categories, :id, :name, class: 'mb-4' %></div>
+          </div>
+          <div class="row">
+            <h4 class="font-weight-bold ml-5 mr-3 mt-3 mb-3">Review: </h4>
+            <div class="form-group mt-3" id="star">
+              <%#= f.label :review,'', class:'col-md-1 col-form-label' %>
+              <%= f.hidden_field :review, id: :review %>
+            </div>
+          </div>
+          <%= f.submit 'Post', class: 'btn btn-outline-success text-center ml-5 mt-3 mb-5' %>
+
+        <% end %>
+
+          <script>
+            $('#star').raty({
+              size     : 36,
+              starOff: '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              scoreName: 'post_image[review]'
+            });
+          </script>
+
+
       </div>
-    <%= f.submit 'Post', class: 'btn btn-outline-success text-center ml-5 mt-3 mb-5' %>
-
-  <% end %>
-
-
-
-   <script>
-    $('#star').raty({
-      size     : 36,
-      starOff: '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      scoreName: 'post_image[review]'
-    });
-    </script>
-
-
     </div>
   </div>
-</div>
+

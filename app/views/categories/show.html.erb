@@ -14,7 +14,7 @@
               <div><%= image_tag post_image.image.present? ? post_image.image : "",class: "list_image" %></div>
             <% end %>
           <p>Title:<%= post_image.title %></p>
-          <p>Memo:<%=post_image.memo %></p>
+          <p>Memo:<%= simple_format(post_image.memo) %></p>
           <p>Category：<%= post_image.category.name %></p>
             <div id="star"></div>
               <div id="star-rate<%= post_image.id%>"></div>

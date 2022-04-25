@@ -14,83 +14,86 @@
   </head>
 
   <body>
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-white bg-white border-bottom border-info">
-    <div class="container">
-      <a class="navbar-brand p-3" href= / ><%= image_tag('logo.png') %></a>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-white bg-white border-bottom border-info">
+        <div class="container">
+          <a class="navbar-brand p-3" href= / ><%= image_tag('logo.png') %></a>
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse collapse show" id="navbarNavDropdown">
-    <% if user_signed_in? %>
-     <ul class= "navbar-nav ml-auto">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse collapse show" id="navbarNavDropdown">
+            <% if user_signed_in? %>
+            <ul class= "navbar-nav ml-auto">
 
-      <%= search_form_for @q, url: items_search_path, class:"search-form" do |f| %>
-        <%= f.search_field :title_cont, placeholder: 'キーワードから探す', class:'input-box' %>
-        <%= f.button type: "submit", class:"search-button" do%>
-          <%= image_tag "search.png", class:"search-icon" %>
-        <% end %>
-      <% end %>
+              <%= search_form_for @q, url: items_search_path, class:"search-form" do |f| %>
+                <%= f.search_field :title_cont, placeholder: 'キーワードから探す', class:'input-box' %>
+                <%= f.button type: "submit", class:"search-button" do %>
+                <%= image_tag "search.png", class:"search-icon" %>
+                <% end %>
+              <% end %>
 
-      <li>
-        <%= link_to user_path(current_user.id), class: "nav-link text-dark font-weight-bold" do %>
-        <i class="fas fa-home text-success"></i> My room
-        <% end %>
-      </li>
-      <li>
-        <%= link_to new_post_image_path, class: "nav-link text-dark font-weight-bold" do %>
-        <i class="fas fa-solid fa-star text-warning"></i>New Post
-        <% end %>
-      </li>
-      <li>
-         <%= link_to users_path, class: "nav-link text-dark font-weight-bold" do %>
-           <i class="fas fa-users text-info"></i> Roommate
-          <% end %>
-      </li>
-      <li>
-        <%= link_to post_images_path, class: "nav-link text-dark font-weight-bold" do %>
-      <i class="fas fa-solid fa-star text-secondary"></i> Reviews
-        <% end %>
-      </li>
-      <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-dark font-weight-bold" do %>
-        <i class="fas fa-sign-out-alt text-danger"></i> Log out
-      <% end %>
 
-    <% else %>
-      <%= link_to new_user_registration_path, class: "nav-link text-dark font-weight-bold" do %>
-         <i class="fas fa-user-plus text-primary"></i> Sign up
-      <% end %>
-      <%= link_to new_user_session_path, class: "nav-link text-dark font-weight-bold" do %>
-         <i class="fas fa-sign-in-alt text-success"></i> Log in
-      <% end %>
-    </ul>
-    <% end %>
+              <li>
+                <%= link_to user_path(current_user.id), class: "nav-link text-dark font-weight-bold" do %>
+                <i class="fas fa-home text-success"></i> My room
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_post_image_path, class: "nav-link text-dark font-weight-bold" do %>
+                <i class="fas fa-solid fa-star text-warning"></i>New Post
+                <% end %>
+              </li>
+              <li>
+                 <%= link_to users_path, class: "nav-link text-dark font-weight-bold" do %>
+                 <i class="fas fa-users text-info"></i> Roommate
+                 <% end %>
+              </li>
+              <li>
+                <%= link_to post_images_path, class: "nav-link text-dark font-weight-bold" do %>
+                <i class="fas fa-solid fa-star text-secondary"></i> Reviews
+                <% end %>
+              </li>
+                <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-dark font-weight-bold" do %>
+                <i class="fas fa-sign-out-alt text-danger"></i> Log out
+                <% end %>
 
-    </div>
-  </header>
-  </nav>
+            <% else %>
+
+              <%= link_to new_user_registration_path, class: "nav-link text-dark font-weight-bold" do %>
+              <i class="fas fa-user-plus text-primary"></i> Sign up
+              <% end %>
+              <%= link_to new_user_session_path, class: "nav-link text-dark font-weight-bold" do %>
+                 <i class="fas fa-sign-in-alt text-success"></i> Log in
+              <% end %>
+            </ul>
+            <% end %>
+
+
+          </div>
+        </div>
+      </nav>
+    </header>
+
   <%= yield %>
-
-
   </div>
- </div>
- <main>
-   <div class="main_background"></div>
- </main>
 
-  <footer>
-     <div class="border-top border-info">
-      <div class="row mt-3">
-       <div class="mx-auto">
-         <p>CopyRight Infratop.inc</p>
 
+
+    <main>
+       <div class="main_background"></div>
+    </main>
+    <footer>
+      <div class="border-top border-info">
+        <div class="row mt-3">
+          <div class="mx-auto">
+            <p>CopyRight Infratop.inc</p>
+
+          </div>
+        </div>
       </div>
-     </div>
-     </div>
     </footer>
 
  </body>
-
 
 </html>

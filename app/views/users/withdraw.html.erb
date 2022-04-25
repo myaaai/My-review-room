@@ -1,20 +1,21 @@
 <div class="row" id="main_background">
-<div class="container">
-  <div class="row">
-	<div class = "body" style>
-		<div class = "container">
-			 <div class="mx-auto col-12 col-sm-10 col-lg-8 col-xl-6 text-center">
-			<h3>本当に退会しますか？</h3>
+  <div class="container">
+    <div class="row">
+  	  <div class="mx-auto text-center mt-5 ml-5">
+	      <div class = "body" style>
 
-			<div class = "withdrawal_text">退会すると、<br>
-				これまでの投稿などが閲覧できなくなります。<br>
-				退会する場合は、「退会する」をクリックしてください。
-			</div>
+			    <h3>本当に退会しますか？</h3>
 
-			<%= link_to "退会しない", users_path(@user), class: "btn btn-outline-primary mt-5 ml-I 4 mr-5 mb-5"%>&ensp;
-			<%= link_to "退会する", destroy_session_path(@user), method: :patch, data: {confirm: "本当に退会してもよろしいですか？"}, class: "btn btn-outline-danger mt-5 ml-3 mb-5" %>
+			      <div class = "withdrawal_text">退会すると、<br>
+				      これまでの投稿などが閲覧できなくなります。<br>
+				      退会する場合は、「退会する」をクリックしてください。
+			      </div>
+
+						<%= link_to "退会しない", users_path(@user), class: "btn btn-outline-primary mt-5 ml-I 4 mr-5 mb-5"%>&ensp;
+						<%= link_to "退会する", destroy_session_path(@user), method: :patch, data: {confirm: "本当に退会してもよろしいですか？"}, class: "btn btn-outline-danger mt-5 ml-3 mb-5" %>
+
+					</div>
+				</div>
+		</div>
 	</div>
-</div>
-
-</div>
 </div>
